@@ -1,8 +1,4 @@
-import {
-    CHANGE_INPUT_VALUE,
-    SUBMIT_INPUT_VALUE,
-    DELETE_LIST_ITEM
-} from './actionTypes';
+import { CHANGE_INPUT_VALUE, SUBMIT_INPUT_VALUE, DELETE_LIST_ITEM } from './actionTypes';
 
 //默认值
 const defaultState = {
@@ -15,8 +11,9 @@ const defaultState = {
 // 纯函数指的是，给定固定的输入，就一定会有固定的输出，而且不会有任何副作用
 // reducer不能有异步和时间相关的非纯函数操作
 export default (state = defaultState, action) => {
-    console.log(action);
+    console.log(CHANGE_INPUT_VALUE, SUBMIT_INPUT_VALUE, DELETE_LIST_ITEM);
     const newState = JSON.parse(JSON.stringify(state));
+    //debugger;
     if (action.type === CHANGE_INPUT_VALUE) {
         newState.inputValue = action.value;
     }

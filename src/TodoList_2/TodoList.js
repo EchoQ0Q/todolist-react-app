@@ -1,14 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import { Input, List } from 'antd';
+import TodoListUI from './TodoListUI';
 import store from '../store';
-import 'antd/dist/antd.css';
+
 import {
     getInputChangeAction,
     getInputSubmitAction,
     getInputDelAction
 } from '../store/actionCreators';
 
-const Search = Input.Search;
 
 class TodoList extends Component{
 
@@ -25,34 +24,16 @@ class TodoList extends Component{
 
     render(){
         return(
-            <div className = "todo-list-wrapper">
-                <Search
-                    value = {this.state.inputValue}
-                    placeholder = "input search text"
-                    enterButton = "Submit"
-                    size = "large"
-                    className = "todo-input"
-                    onChange = {this.inputValueChange}
-                    onSearch={
-                        value => this.submitInputValue(value)
-                    }
-                    //ref = {this.textInput}
-                />
-                <List
-                    header = {<div>列表项</div>}
-                    // footer={<div>Footer</div>}
-                    bordered
-                    className = "todo-list"
-                    dataSource = {this.state.list}
-                    renderItem = { (item, key) => (
-                        <List.Item 
-                            onClick = { this.deleteListItem.bind(this,key) }
-                        >
-                            {item}
-                        </List.Item>
-                    )}
-                />
-            </div>
+            <TodoListUI
+                inputValue = {this.state.inputValue}
+                placeholder = "input search text"
+                enterButton = "Submit"
+                onChangeEvent = { this.inputValueChange }
+                onSearchEvent = { this.submitInputValue }
+                onListItemClick = { this.deleteListItem }
+                data = { this.state.list }
+            />
+
         )
 
     }
